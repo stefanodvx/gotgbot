@@ -29,8 +29,10 @@ func StartServer(
 	})
 
 	log.Printf("Webhook server started at %s\n", listenAddr)
-	err := http.ListenAndServe(listenAddr, server)
-	if err != nil {
-		panic("failed to start server: " + err.Error())
-	}
+	go func() {
+		err := http.ListenAndServe(listenAddr, server)
+		if err != nil {
+			panic("failed to start server: " + err.Error())
+		}
+	}()
 }

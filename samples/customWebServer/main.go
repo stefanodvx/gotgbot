@@ -61,6 +61,9 @@ func main() {
 		panic("failed to add webhook: " + err.Error())
 	}
 
+	// Start the webhook server.
+	StartServer(updater, webhookDomain)
+
 	// Add echo handler to reply to all text messages.
 	dispatcher.AddHandler(handlers.NewMessage(message.Text, echo))
 
